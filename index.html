@@ -28,6 +28,8 @@
             <article class="header-navigation-container">
                 <nav>
                     <ul class="navigation-list">
+                        <li><h3 class="last-refresh">Time since last refresh:</h3></li>
+                        <li><h3 id="last-refresh-text"></h3></li>
                         <li><button class="header-btn" id="refresh-btn">Refresh</button></li>
                         <li><button class="header-btn" id="calculator-button-toggle">Calculator</button></li>
                     </ul>
@@ -91,22 +93,22 @@
             <h1 class="price-article-title">{{name}}</h1>
         
             <article class="price-block eur buy">
-                <p>Buy</p>
+                <p>Client <span>buys</span></p>
                 <h3 class="price">€ {{buyEUR}}</h3>
             </article>
         
             <article class="price-block eur sell">
-                <p>Sell</p>
+                <p>Client <span>sells</span></p>
                 <h3 class="price">€ {{sellEUR}}</h3>
             </article>
         
             <article class="price-block usd buy">
-                <p>Buy</p>
+                <p>Client <span>buys</span></p>
                 <h3 class="price">$ {{buyUSD}}</h3>
             </article>
         
             <article class="price-block usd sell">
-                <p>Sell</p>
+                <p>Client <span>sells</span></p>
                 <h3 class="price">$ {{sellUSD}}</h3>
             </article>
         

@@ -7,13 +7,21 @@ const template = document.getElementById('container-template');
 const templateHTML = template.innerHTML;
 const priceArticlesContainer = document.getElementsByClassName('price-articles')[0];
 const refreshBtn = document.getElementById('refresh-btn');
+const timeContainer = document.getElementById('last-refresh-text');
+let seconds = 0;
+
+let interval;
 
 // exchange prices container
 const exchanges = {};
 
 async function displayInfo() {
 
+    clearInterval(interval);
     await loadData();
+    seconds = 0;
+    interval = setInterval(setTime, 1000);
+    setTime();
 
     priceArticlesContainer.innerHTML = generateHTML();
 }
@@ -105,49 +113,19 @@ function formatCurrency(number) {
     }).substring(1);
 }
 
-// function attachListeners() {
-
-//     convertBtn.addEventListener('click', e => {
-//         e.preventDefault();
-//         resultField.value = calculateAndChangeRate('buy');
-//     });
-
-// }
-
-// function calculateAndChangeRate() {
-//     let rate = 0;
-//     let result = 0;
-//     let currency = currencyValue.value;
-//     const transaction = currency.charAt(0);
-//     currency = currency.substring(1);
-//     const amount = inputValue.value;
-
-//     switch (transaction) {
-//         case '0':
-//             rate = exchanges[currency].sellRate;
-//             result = Number(rate * amount).toFixed(2);
-//             break;
-//         case '1':
-//             rate = exchanges[currency].buyRate;
-//             result = Number(amount / rate).toFixed(8);
-//             break;
-//     }
-
-//     const strCurrency = String(currency);
-//     currentRate.innerHTML = `${rate} ${strCurrency.substr(strCurrency.length - 3)}`;
-
-//     return result;
-
-// }
-
-
-// async function getTime() {
-//     let timeResult = {};
-//     await fetch(time)
-//         .then(res => res.json())
-//         .then(data => timeResult = data);
-//     console.log(JSON.stringify(timeResult.result.rfc1123));
-// }
+function setTime() {
+    let minutes = parseInt(seconds / 60);
+    if (minutes < 10) {
+        minutes = '0' + minutes;
+    }
+    let displaySeconds = seconds;
+    displaySeconds %= 60;
+    if (displaySeconds < 10) {
+        displaySeconds = '0' + displaySeconds;
+    }
+    timeContainer.innerHTML = `${minutes}:${displaySeconds}`;
+    seconds++;
+}
 
 displayInfo();
 attachRefreshListener();

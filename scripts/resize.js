@@ -37,7 +37,7 @@ function resizeView() {
         }
 
         for (let block of priceBlocks) {
-            block.children[0].style.fontSize = '18px';
+            block.children[0].style.fontSize = '16px';
         }
     }
     // with calc
